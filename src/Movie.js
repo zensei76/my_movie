@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Counter } from "./Counter";
+import { useNavigate } from "react-router-dom";
 
-export function Movie({ movie }) {
+export function Movie({ movie, id }) {
   const [show, setShow] = useState(true);
 
   const styles = {
@@ -11,6 +12,9 @@ export function Movie({ movie }) {
   // const paraStyles = {
   //   visibility: show ? "visible" : "hidden",
   // };
+
+  // navigate is just a variable name no keyword here
+  const navigate = useNavigate();
 
   return (
     <div className='movie-container'>
@@ -22,6 +26,8 @@ export function Movie({ movie }) {
         </p>
       </div>
       <button onClick={() => setShow(!show)}>Toggle Summary</button>
+      <button onClick={() => navigate(`/movie/${id}`)}>Info</button>
+      {/* <button onClick={() => navigate(`/movie/${movie.name}`)}>Info 2</button> */}
 
       {/* Conditional Styling  */}
       {/* <p className='movie-summary' style={paraStyles}>
