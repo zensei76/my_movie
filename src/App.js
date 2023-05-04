@@ -3,7 +3,14 @@ import { AddColor } from "./AddColor";
 import { MovieList } from "./MovieList";
 import "./App.css";
 import { useState } from "react";
-import { Link, Routes, Route, Navigate, useParams } from "react-router-dom";
+import {
+  Link,
+  Routes,
+  Route,
+  Navigate,
+  useParams,
+  useNavigate,
+} from "react-router-dom";
 
 function App() {
   const INITIAL_MOVIE_LIST = [
@@ -114,7 +121,10 @@ function App() {
 
         <Route path='/films' element={<Navigate replace to='/movie ' />} />
 
-        <Route path='/movie/:id' element={<MovieDetails />} />
+        <Route
+          path='/movie/:id'
+          element={<MovieDetails movieList={movieList} />}
+        />
       </Routes>
 
       {/* <MovieList movieList={movieList} setMovieList={setMovieList} /> */}
@@ -123,17 +133,11 @@ function App() {
   );
 }
 
-function MovieDetails() {
+function MovieDetails({ movieList }) {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  const movie = {
-    name: "RRR",
-    poster:
-      "https://englishtribuneimages.blob.core.windows.net/gallary-content/2021/6/Desk/2021_6$largeimg_977224513.JPG",
-    rating: 8.8,
-    summary:
-      "RRR is an upcoming Indian Telugu-language period action drama film directed by S. S. Rajamouli, and produced by D. V. V. Danayya of DVV Entertainments.",
-  };
+  const movie = movieList[id];
 
   const styles = {
     color: movie.rating > 8 ? "green" : "red",
@@ -160,6 +164,10 @@ function MovieDetails() {
         </div>
         <p className='movie-summary'>{movie.summary}</p>
       </div>
+      <button className='back-button' onClick={() => navigate(-1)}>
+        {" "}
+        🔙
+      </button>
     </div>
   );
 }

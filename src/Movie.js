@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Counter } from "./Counter";
 import { useNavigate } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import InfoIcon from "@mui/icons-material/Info";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 export function Movie({ movie, id }) {
   const [show, setShow] = useState(true);
@@ -21,13 +25,27 @@ export function Movie({ movie, id }) {
       <img src={movie.poster} alt={movie.name} className='movie-poster' />
       <div className='movie-specs'>
         <h2 className='movie-name'>{movie.name}</h2>
+
+        <IconButton
+          aria-label='movie details'
+          color='info'
+          onClick={() => navigate(`/movie/${id}`)}
+        >
+          <InfoIcon />
+        </IconButton>
+
+        <IconButton
+          aria-label='Movie-Details'
+          color='primary'
+          onClick={() => setShow(!show)}
+        >
+          {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        </IconButton>
+
         <p style={styles} className='movie-rating'>
           ⭐{movie.rating}
         </p>
       </div>
-      <button onClick={() => setShow(!show)}>Toggle Summary</button>
-      <button onClick={() => navigate(`/movie/${id}`)}>Info</button>
-      {/* <button onClick={() => navigate(`/movie/${movie.name}`)}>Info 2</button> */}
 
       {/* Conditional Styling  */}
       {/* <p className='movie-summary' style={paraStyles}>
