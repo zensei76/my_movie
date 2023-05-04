@@ -1,24 +1,17 @@
 /* eslint-disable no-undef */
-import { AddColor } from "./AddColor";
-import { MovieList , AddMovie} from "./MovieList";
 import "./App.css";
+
+import { NavBar } from "./NavBar";
+import { Home } from "./Home";
+import { MovieList } from "./MovieList";
+import { AddMovie } from "./AddMovie";
+import { AddColor } from "./AddColor";
+import { NotFound } from "./NotFound";
+import { MovieDetails } from "./MovieDetails";
+
 import { useState } from "react";
-import AppBar from '@mui/material/AppBar';
-import HomeIcon from '@mui/icons-material/Home';
-import Toolbar from '@mui/material/Toolbar';
 
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-
-import {
-  
-  Routes,
-  Route,
-  Navigate,
-  useParams,
-  useNavigate,
-} from "react-router-dom";
-
+import { Routes, Route, Navigate } from "react-router-dom";
 
 
 function App() {
@@ -96,27 +89,10 @@ function App() {
   ];
 
   const [movieList, setMovieList] = useState(INITIAL_MOVIE_LIST);
-  const navigate = useNavigate()
+ 
   return (
     <div>
-      <AppBar position='static'>
-        <Toolbar>
-          <IconButton aria-label='Home' onClick={() => navigate("/")}>
-            <HomeIcon />
-          </IconButton>
-
-          <Button color='inherit' onClick={() => navigate("/movie")}>
-            Movies
-          </Button>
-          <Button color='inherit' onClick={() => navigate("/movie/add")}>
-            Add Movie
-          </Button>
-          <Button color='inherit' onClick={() => navigate("/color-game")}>
-            Color Game
-          </Button>
-        </Toolbar>
-      </AppBar>
-
+      <NavBar />
       {/* ----------------------------------------Routes hertr we call components ------------------------------------------------------ */}
       <Routes>
         <Route path='/' element={<Home />} />
@@ -153,50 +129,6 @@ function App() {
   );
 }
 
-function MovieDetails({ movieList }) {
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  const movie = movieList[id];
-
-  const styles = {
-    color: movie.rating > 8 ? "green" : "red",
-  };
-
-  return (
-    <div>
-      <iframe
-        width='800'
-        height='450'
-        src={movie.trailer}
-        title='Solo Leveling | OFFICIAL TEASER'
-        frameborder='0'
-        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-        allowfullscreen
-      ></iframe>
-      <div className='movie-details-container'>
-        <div className='movie-specs'>
-          <h2 className='movie-name'>{movie.name}</h2>
-
-          <p style={styles} className='movie-rating'>
-            ⭐{movie.rating}
-          </p>
-        </div>
-        <p className='movie-summary'>{movie.summary}</p>
-      </div>
-      <button className='back-button' onClick={() => navigate(-1)}>
-        {" "}
-        🔙
-      </button>
-    </div>
-  );
-}
-
-function Home() {
-  return <h1>Welcome to te movie App</h1>;
-}
-function NotFound() {
-  return <h1> Not Found</h1>;
-}
 export default App;
+
 
