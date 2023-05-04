@@ -1,16 +1,25 @@
 /* eslint-disable no-undef */
 import { AddColor } from "./AddColor";
-import { MovieList } from "./MovieList";
+import { MovieList , AddMovie} from "./MovieList";
 import "./App.css";
 import { useState } from "react";
+import AppBar from '@mui/material/AppBar';
+import HomeIcon from '@mui/icons-material/Home';
+import Toolbar from '@mui/material/Toolbar';
+
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+
 import {
-  Link,
+  
   Routes,
   Route,
   Navigate,
   useParams,
   useNavigate,
 } from "react-router-dom";
+
+
 
 function App() {
   const INITIAL_MOVIE_LIST = [
@@ -87,22 +96,27 @@ function App() {
   ];
 
   const [movieList, setMovieList] = useState(INITIAL_MOVIE_LIST);
-
+  const navigate = useNavigate()
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/color-game'>Add Color</Link>
-          </li>
-          <li>
-            <Link to='/movie'>Movie</Link>
-          </li>
-        </ul>
-      </nav>
+      <AppBar position='static'>
+        <Toolbar>
+          <IconButton aria-label='Home' onClick={() => navigate("/")}>
+            <HomeIcon />
+          </IconButton>
+
+          <Button color='inherit' onClick={() => navigate("/movie")}>
+            Movies
+          </Button>
+          <Button color='inherit' onClick={() => navigate("/movie/add")}>
+            Add Movie
+          </Button>
+          <Button color='inherit' onClick={() => navigate("/color-game")}>
+            Color Game
+          </Button>
+        </Toolbar>
+      </AppBar>
+
       {/* ----------------------------------------Routes hertr we call components ------------------------------------------------------ */}
       <Routes>
         <Route path='/' element={<Home />} />
@@ -113,6 +127,12 @@ function App() {
           path='/movie'
           element={
             <MovieList movieList={movieList} setMovieList={setMovieList} />
+          }
+        />
+        <Route
+          path='/movie/add'
+          element={
+            <AddMovie movieList={movieList} setMovieList={setMovieList} />
           }
         />
         <Route path='/404' element={<NotFound />} />
@@ -179,3 +199,4 @@ function NotFound() {
   return <h1> Not Found</h1>;
 }
 export default App;
+

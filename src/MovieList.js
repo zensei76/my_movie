@@ -3,7 +3,23 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-export function MovieList({ movieList, setMovieList }) {
+ function MovieList({ movieList, setMovieList }) {
+ 
+
+  return (
+    <div>
+ 
+    {/* <AddMovie /> */}
+      <div className='movie-list'>
+        {movieList.map((mv, index) => (
+          <Movie key={index} movie={mv} id={index} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+ function AddMovie({ movieList, setMovieList }){
   const [name, setName] = useState("");
   const [poster, setPoster] = useState("");
   const [ratings, setRatings] = useState("");
@@ -27,10 +43,8 @@ export function MovieList({ movieList, setMovieList }) {
     setRatings("");
     setSummary("");
   };
-
-  return (
-    <div>
-      <div className='add-movie-form'>
+  return(<div>
+    <div className='add-movie-form'>
         <TextField
           label='Name'
           variant='standard'
@@ -72,12 +86,7 @@ export function MovieList({ movieList, setMovieList }) {
           Add Movie
         </Button>
       </div>
-
-      <div className='movie-list'>
-        {movieList.map((mv, index) => (
-          <Movie key={index} movie={mv} id={index} />
-        ))}
-      </div>
-    </div>
-  );
+  </div>)
 }
+
+export {MovieList, AddMovie}
