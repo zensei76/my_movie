@@ -1,7 +1,8 @@
-import {
-  useParams,
-  useNavigate
-} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import Button from '@mui/material/Button';
+
 
 export function MovieDetails({ movieList }) {
   const { id } = useParams();
@@ -34,10 +35,12 @@ export function MovieDetails({ movieList }) {
         </div>
         <p className='movie-summary'>{movie.summary}</p>
       </div>
-      <button className='back-button' onClick={() => navigate(-1)}>
-        {" "}
-        🔙
-      </button>
+
+
+      <Button startIcon ={ <KeyboardReturnIcon />} variant="outlined"className='back-button' onClick={() => navigate(-1)}>
+        Back
+      </Button>
+
     </div>
   );
 }

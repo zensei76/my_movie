@@ -13,7 +13,6 @@ import { useState } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
-
 function App() {
   const INITIAL_MOVIE_LIST = [
     {
@@ -89,40 +88,41 @@ function App() {
   ];
 
   const [movieList, setMovieList] = useState(INITIAL_MOVIE_LIST);
- 
+
   return (
     <div>
       <NavBar />
       {/* ----------------------------------------Routes hertr we call components ------------------------------------------------------ */}
-      <Routes>
-        <Route path='/' element={<Home />} />
+      <section className='routes-container'>
+        <Routes>
+          <Route path='/' element={<Home />} />
 
-        <Route path='/color-game' element={<AddColor />} />
+          <Route path='/color-game' element={<AddColor />} />
 
-        <Route
-          path='/movie'
-          element={
-            <MovieList movieList={movieList} setMovieList={setMovieList} />
-          }
-        />
-        <Route
-          path='/movie/add'
-          element={
-            <AddMovie movieList={movieList} setMovieList={setMovieList} />
-          }
-        />
-        <Route path='/404' element={<NotFound />} />
+          <Route
+            path='/movie'
+            element={
+              <MovieList movieList={movieList} setMovieList={setMovieList} />
+            }
+          />
+          <Route
+            path='/movie/add'
+            element={
+              <AddMovie movieList={movieList} setMovieList={setMovieList} />
+            }
+          />
+          <Route path='/404' element={<NotFound />} />
 
-        <Route path='*' element={<Navigate replace to='/404' />} />
+          <Route path='*' element={<Navigate replace to='/404' />} />
 
-        <Route path='/films' element={<Navigate replace to='/movie ' />} />
+          <Route path='/films' element={<Navigate replace to='/movie ' />} />
 
-        <Route
-          path='/movie/:id'
-          element={<MovieDetails movieList={movieList} />}
-        />
-      </Routes>
-
+          <Route
+            path='/movie/:id'
+            element={<MovieDetails movieList={movieList} />}
+          />
+        </Routes>
+      </section>
       {/* <MovieList movieList={movieList} setMovieList={setMovieList} /> */}
       {console.log(movieList)}
     </div>
@@ -130,5 +130,3 @@ function App() {
 }
 
 export default App;
-
-

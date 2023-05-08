@@ -29,3 +29,7 @@
   justify-items: center;
 
 }
+
+body {
+  margin: 0;
+}
