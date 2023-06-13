@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import "./App.css";
-
 import { NavBar } from "./NavBar";
 import { Home } from "./Home";
 import { MovieList } from "./MovieList";
@@ -8,12 +7,20 @@ import { AddMovie } from "./AddMovie";
 import { AddColor } from "./AddColor";
 import { NotFound } from "./NotFound";
 import { MovieDetails } from "./MovieDetails";
-
+import Paper from "@mui/material/Paper";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useState } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
+  const [mode,setMode] = useState("dark");
+  const theme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+
   const INITIAL_MOVIE_LIST = [
     {
       name: "RRR",
@@ -91,40 +98,50 @@ function App() {
 
   return (
     <div>
-      <NavBar />
-      {/* ----------------------------------------Routes hertr we call components ------------------------------------------------------ */}
-      <section className='routes-container'>
-        <Routes>
-          <Route path='/' element={<Home />} />
+      <ThemeProvider theme={theme}>
+        <Paper elevation={3} style={{minHeight : "100vh" , borderRadius : "0px" }}>
+          <NavBar mode={mode} setMode = {setMode}/>
+          {/* ----------------------------------------Routes hertr we call components ------------------------------------------------------ */}
+          <section className='routes-container'>
+            <Routes>
+              <Route path='/' element={<Home />} />
 
-          <Route path='/color-game' element={<AddColor />} />
+              <Route path='/color-game' element={<AddColor />} />
 
-          <Route
-            path='/movie'
-            element={
-              <MovieList movieList={movieList} setMovieList={setMovieList} />
-            }
-          />
-          <Route
-            path='/movie/add'
-            element={
-              <AddMovie movieList={movieList} setMovieList={setMovieList} />
-            }
-          />
-          <Route path='/404' element={<NotFound />} />
+              <Route
+                path='/movie'
+                element={
+                  <MovieList
+                    movieList={movieList}
+                    setMovieList={setMovieList}
+                  />
+                }
+              />
+              <Route
+                path='/movie/add'
+                element={
+                  <AddMovie movieList={movieList} setMovieList={setMovieList} />
+                }
+              />
+              <Route path='/404' element={<NotFound />} />
 
-          <Route path='*' element={<Navigate replace to='/404' />} />
+              <Route path='*' element={<Navigate replace to='/404' />} />
 
-          <Route path='/films' element={<Navigate replace to='/movie ' />} />
+              <Route
+                path='/films'
+                element={<Navigate replace to='/movie ' />}
+              />
 
-          <Route
-            path='/movie/:id'
-            element={<MovieDetails movieList={movieList} />}
-          />
-        </Routes>
-      </section>
-      {/* <MovieList movieList={movieList} setMovieList={setMovieList} /> */}
-      {console.log(movieList)}
+              <Route
+                path='/movie/:id'
+                element={<MovieDetails movieList={movieList} />}
+              />
+            </Routes>
+          </section>
+          {/* <MovieList movieList={movieList} setMovieList={setMovieList} /> */}
+          {console.log(movieList)}
+        </Paper>
+      </ThemeProvider>
     </div>
   );
 }
