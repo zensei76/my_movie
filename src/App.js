@@ -10,11 +10,13 @@ import { MovieDetails } from "./MovieDetails";
 import Paper from "@mui/material/Paper";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useState } from "react";
-
+// import DeleteIcon from "@mui/icons-material/Delete";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { TicTacToe } from "./TicTacToe";
+// import { IconButton } from "@mui/material";
 
 function App() {
-  const [mode,setMode] = useState("dark");
+  const [mode, setMode] = useState("dark");
   const theme = createTheme({
     palette: {
       mode: mode,
@@ -23,6 +25,7 @@ function App() {
 
   const INITIAL_MOVIE_LIST = [
     {
+      id: 100,
       name: "RRR",
       poster:
         "https://englishtribuneimages.blob.core.windows.net/gallary-content/2021/6/Desk/2021_6$largeimg_977224513.JPG",
@@ -32,6 +35,7 @@ function App() {
       trailer: "https://www.youtube.com/embed/f_vbAtFSEc0",
     },
     {
+      id: 101,
       name: "Iron man 2",
       poster:
         "https://m.media-amazon.com/images/M/MV5BMTM0MDgwNjMyMl5BMl5BanBnXkFtZTcwNTg3NzAzMw@@._V1_FMjpg_UX1000_.jpg",
@@ -41,6 +45,7 @@ function App() {
       trailer: "https://www.youtube.com/embed/wKtcmiifycU",
     },
     {
+      id: 102,
       name: "No Country for Old Men",
       poster:
         "https://upload.wikimedia.org/wikipedia/en/8/8b/No_Country_for_Old_Men_poster.jpg",
@@ -50,6 +55,7 @@ function App() {
       trailer: "https://www.youtube.com/embed/38A__WT3-o0",
     },
     {
+      id: 103,
       name: "Jai Bhim",
       poster:
         "https://m.media-amazon.com/images/M/MV5BY2Y5ZWMwZDgtZDQxYy00Mjk0LThhY2YtMmU1MTRmMjVhMjRiXkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
@@ -59,6 +65,7 @@ function App() {
       trailer: "https://www.youtube.com/embed/nnXpbTFrqXA",
     },
     {
+      id: 104,
       name: "The Avengers",
       rating: 8,
       summary:
@@ -68,6 +75,7 @@ function App() {
       trailer: "https://www.youtube.com/embed/eOrNdBpGMv8",
     },
     {
+      id: 105,
       name: "Interstellar",
       poster: "https://m.media-amazon.com/images/I/A1JVqNMI7UL._SL1500_.jpg",
       rating: 8.6,
@@ -76,6 +84,7 @@ function App() {
       trailer: "https://www.youtube.com/embed/zSWdZVtXT7E",
     },
     {
+      id: 106,
       name: "Baahubali",
       poster: "https://flxt.tmsimg.com/assets/p11546593_p_v10_af.jpg",
       rating: 8,
@@ -84,6 +93,7 @@ function App() {
       trailer: "https://www.youtube.com/embed/sOEg_YZQsTI",
     },
     {
+      id: 107,
       name: "Ratatouille",
       poster:
         "https://resizing.flixster.com/gL_JpWcD7sNHNYSwI1ff069Yyug=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzc4ZmJhZjZiLTEzNWMtNDIwOC1hYzU1LTgwZjE3ZjQzNTdiNy5qcGc=",
@@ -99,14 +109,18 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Paper elevation={3} style={{minHeight : "100vh" , borderRadius : "0px" }}>
-          <NavBar mode={mode} setMode = {setMode}/>
+        <Paper
+          elevation={3}
+          style={{ minHeight: "100vh", borderRadius: "0px" }}
+        >
+          <NavBar mode={mode} setMode={setMode} />
           {/* ----------------------------------------Routes hertr we call components ------------------------------------------------------ */}
           <section className='routes-container'>
             <Routes>
               <Route path='/' element={<Home />} />
 
               <Route path='/color-game' element={<AddColor />} />
+              <Route path='/tic-tac-toe' element={<TicTacToe />} />
 
               <Route
                 path='/movie'
@@ -139,7 +153,7 @@ function App() {
             </Routes>
           </section>
           {/* <MovieList movieList={movieList} setMovieList={setMovieList} /> */}
-          {console.log(movieList)}
+          {/* {console.log(movieList)} */}
         </Paper>
       </ThemeProvider>
     </div>
@@ -147,3 +161,5 @@ function App() {
 }
 
 export default App;
+
+

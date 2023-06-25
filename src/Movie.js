@@ -8,10 +8,12 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-export function Movie({ movie, id }) {
+export function Movie({ movie, id, movieList, setMovieList }) {
   const [show, setShow] = useState(true);
 
+  // console.log(movieList, id);
   const styles = {
     color: movie.rating > 8 ? "green" : "red",
   };
@@ -25,7 +27,7 @@ export function Movie({ movie, id }) {
 
   return (
     // <Card className='movie-container' style={{height : "min-content"}}>
-    <Card className='movie-container' sx={{height : "min-content" }}>
+    <Card className='movie-container' sx={{ height: "min-content" }}>
       <img src={movie.poster} alt={movie.name} className='movie-poster' />
       <CardContent>
         <div className='movie-specs'>
@@ -60,9 +62,29 @@ export function Movie({ movie, id }) {
         {/* Conditional Rendering  */}
         {show ? <p className='movie-summary'>{movie.summary}</p> : null}
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ justifyContent: 'space-between' }} >
         <Counter />
+        <DeleteMovie
+          movieList={movieList}
+          movie={movie}
+          id={id}
+          setMovieList={setMovieList}
+        />
       </CardActions>
     </Card>
+  );
+}
+
+function DeleteMovie({ movieList, setMovieList, id, movie }) {
+  const deleteMovie = () => {
+    let deletedMovie = movieList.splice(id, 1);
+    setMovieList([...movieList]);
+    // console.log(`Deleted Movie: ${JSON.stringify(deletedMovie)}`);
+  };
+
+  return (
+    <IconButton onClick={deleteMovie}>
+      <DeleteIcon />
+    </IconButton>
   );
 }

@@ -29,6 +29,9 @@ export function NavBar({ mode, setMode }) {
         <Button color='inherit' onClick={() => navigate("/color-game")}>
           Color Game
         </Button>
+        <Button color='inherit' onClick={() => navigate("/tic-tac-toe")}>
+          Tic-Tac-Toe
+        </Button>
       </Box>
 
           <IconButton

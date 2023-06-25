@@ -15,6 +15,7 @@ export function AddMovie({ movieList, setMovieList }) {
       ratings: ratings,
       summary: summary,
     };
+    
     // copy movieList and add newMovie to it
     if (name && summary) {
       setMovieList([...movieList, newMovie]);
