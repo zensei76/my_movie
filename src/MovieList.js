@@ -1,19 +1,47 @@
+import { useEffect, useState } from "react";
 import { Movie } from "./Movie";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
-export function MovieList({ movieList , setMovieList}) {
+export function MovieList() {
+  const url = "https://64970eb083d4c69925a361bf.mockapi.io/movies";
+  const [movieList, setMovieList] = useState([]);
 
-  const url = "https://64970eb083d4c69925a361bf.mockapi.io/movies"
-  fetch(url).then(data => data.json()).then((mvs)=> console.log(mvs)) 
+  const getMovies = () => {
+    fetch(url, {
+      method: "GET",
+    })
+      .then((data) => data.json())
+      .then((mvs) => setMovieList(mvs));
+  };
+  useEffect(() => getMovies(), []);
 
+  const deleteMovie = (id) => {
 
+    //Delete ---> Refresh data
+  
+    fetch(`https://64970eb083d4c69925a361bf.mockapi.io/movies/${id}`, {
+      method: "DELETE",
+    }).then(()=> getMovies());
+  };
 
   return (
     <div>
       {/* <AddMovie /> */}
       <div className='movie-list'>
         {movieList.map((mv, index) => (
-          <Movie key={index} movie={mv} id={index} setMovieList={setMovieList} movieList={movieList} />
-         
+          <Movie
+            key={mv.id}
+            movie={mv}
+            id={mv.id}
+            // setMovieList={setMovieList}
+            // movieList={movieList}
+            deleteButton={
+              <IconButton onClick={() => deleteMovie(mv.id)}>
+                <DeleteIcon />
+              </IconButton>
+            }
+          />
         ))}
         {/* { console.log(setMovieList)} */}
       </div>

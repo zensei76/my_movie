@@ -126,8 +126,8 @@ function App() {
                 path='/movie'
                 element={
                   <MovieList
-                    movieList={movieList}
-                    setMovieList={setMovieList}
+                    // movieList={movieList}
+                    // setMovieList={setMovieList}
                   />
                 }
               />

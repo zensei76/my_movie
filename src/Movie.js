@@ -8,9 +8,9 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import DeleteIcon from "@mui/icons-material/Delete";
+// import DeleteIcon from "@mui/icons-material/Delete";
 
-export function Movie({ movie, id, movieList, setMovieList }) {
+export function Movie({ movie, id, movieList, setMovieList ,deleteButton}) {
   const [show, setShow] = useState(true);
 
   // console.log(movieList, id);
@@ -64,27 +64,30 @@ export function Movie({ movie, id, movieList, setMovieList }) {
       </CardContent>
       <CardActions sx={{ justifyContent: 'space-between' }} >
         <Counter />
-        <DeleteMovie
+        {/* <DeleteMovie
           movieList={movieList}
           movie={movie}
           id={id}
           setMovieList={setMovieList}
-        />
+        /> */}
+        {deleteButton}
       </CardActions>
     </Card>
   );
 }
 
-function DeleteMovie({ movieList, setMovieList, id, movie }) {
-  const deleteMovie = () => {
-    let deletedMovie = movieList.splice(id, 1);
-    setMovieList([...movieList]);
-    // console.log(`Deleted Movie: ${JSON.stringify(deletedMovie)}`);
-  };
 
-  return (
-    <IconButton onClick={deleteMovie}>
-      <DeleteIcon />
-    </IconButton>
-  );
-}
+//to delete a movie
+// function DeleteMovie({ movieList, setMovieList, id, movie }) {
+//   const deleteMovie = () => {
+//     let deletedMovie = movieList.splice(id, 1);
+//     setMovieList([...movieList]);
+//     // console.log(`Deleted Movie: ${JSON.stringify(deletedMovie)}`);
+//   };
+
+//   return (
+//     <IconButton onClick={deleteMovie}>
+//       <DeleteIcon />
+//     </IconButton>
+//   );
+// }
