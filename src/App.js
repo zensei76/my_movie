@@ -134,7 +134,10 @@ function App() {
               <Route
                 path='/movie/add'
                 element={
-                  <AddMovie movieList={movieList} setMovieList={setMovieList} />
+                  <AddMovie 
+                  // movieList={movieList} 
+                  // setMovieList={setMovieList}
+                   />
                 }
               />
               <Route path='/404' element={<NotFound />} />
