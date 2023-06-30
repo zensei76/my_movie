@@ -1,20 +1,40 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import { useEffect } from "react";
 
-// export function AddMovie({ movieList, setMovieList }) {
-export function AddMovie() {
-  const [name, setName] = useState("");
-  const [poster, setPoster] = useState("");
-  const [ratings, setRatings] = useState("");
-  const [summary, setSummary] = useState("");
-  const [trailer, setTrailer] = useState("");
+export function EditMovie() {
+  const { id } = useParams();
+
+  // const movie = movieList[id]; used before api call for local data
+
+  const [movie, setMovie] = useState(null);
+
+  const getMovie = () => {
+    fetch(`https://64970eb083d4c69925a361bf.mockapi.io/movies/${id}`, {
+      method: "GET",
+    })
+      .then((data) => data.json())
+      .then((mv) => setMovie(mv));
+  };
+  useEffect(() => getMovie(), []);
+
+
+  return(movie ? <EditMovieForm movie = {movie}/>: "Loding...");
+}
+
+function EditMovieForm({movie}) {
+  const [name, setName] = useState(movie.name);
+  const [poster, setPoster] = useState(movie.poster);
+  const [ratings, setRatings] = useState(movie.ratings);
+  const [summary, setSummary] = useState(movie.summary);
+  const [trailer, setTrailer] = useState(movie.trailer);
 
   const navigate = useNavigate();
 
-  const addMovie = () => {
-    const newMovie = {
+  const editMovie = () => {
+    const updatedMovie = {
       name: name,
       poster: poster,
       ratings: ratings,
@@ -22,29 +42,20 @@ export function AddMovie() {
       trailer: trailer,
     };
 
-    // copy movieList and add newMovie to it
-    // if (name && summary) {
-    //   setMovieList([...movieList, newMovie]);
-    // }
 
-    //POST
-    // 1.method - POST(Method: The request method is either GET or POST.)
+    //PUT
+    // 1.method - PUT(Method: The request method is either GET or POST.) and movie id
     // 2. body - data & JSON (Body: The body can be any of the following: Body.array.Buffer(), Body.Blob(), Body.formData(), Body.json(), Body.text().
     // 3. headers - mention passing json data
+    
 
-    fetch(`https://64970eb083d4c69925a361bf.mockapi.io/movies`, {
-      method: "POST",
-      body: JSON.stringify(newMovie),
+    fetch(`https://64970eb083d4c69925a361bf.mockapi.io/movies/${movie.id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedMovie),
       headers: {
         "Content-Type": "application/json",
       },
     }).then(() => navigate("/movie"));
-
-    // console.log(movieList)
-    setName("");
-    setPoster("");
-    setRatings("");
-    setSummary("");
   };
   return (
     <div>
@@ -94,8 +105,8 @@ export function AddMovie() {
           value={trailer}
         />
 
-        <Button variant='outlined' onClick={addMovie}>
-          Add Movie
+        <Button variant='outlined' onClick={editMovie} color='success'>
+          Save
         </Button>
       </div>
     </div>

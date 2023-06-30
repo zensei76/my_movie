@@ -10,7 +10,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 // import DeleteIcon from "@mui/icons-material/Delete";
 
-export function Movie({ movie, id, movieList, setMovieList ,deleteButton}) {
+export function Movie({ movie, id, movieList, setMovieList ,deleteButton , editButton}) {
   const [show, setShow] = useState(true);
 
   // console.log(movieList, id);
@@ -70,7 +70,11 @@ export function Movie({ movie, id, movieList, setMovieList ,deleteButton}) {
           id={id}
           setMovieList={setMovieList}
         /> */}
+        <div>
+
+        {editButton}
         {deleteButton}
+        </div>
       </CardActions>
     </Card>
   );

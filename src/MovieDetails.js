@@ -33,7 +33,7 @@ export function MovieDetails() {
         width='800'
         height='450'
         src={movie.trailer}
-        title='Solo Leveling | OFFICIAL TEASER'
+        title={movie.name}
         frameBorder='0'
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
         allowfullscreen

@@ -4,6 +4,7 @@ import { NavBar } from "./NavBar";
 import { Home } from "./Home";
 import { MovieList } from "./MovieList";
 import { AddMovie } from "./AddMovie";
+import { EditMovie } from "./EditMovie";
 import { AddColor } from "./AddColor";
 import { NotFound } from "./NotFound";
 import { MovieDetails } from "./MovieDetails";
@@ -126,20 +127,21 @@ function App() {
                 path='/movie'
                 element={
                   <MovieList
-                    // movieList={movieList}
-                    // setMovieList={setMovieList}
+                  // movieList={movieList}
+                  // setMovieList={setMovieList}
                   />
                 }
               />
               <Route
                 path='/movie/add'
                 element={
-                  <AddMovie 
-                  // movieList={movieList} 
+                  <AddMovie
+                  // movieList={movieList}
                   // setMovieList={setMovieList}
-                   />
+                  />
                 }
               />
+              <Route path='/movie/edit/:id' element={<EditMovie />} />
               <Route path='/404' element={<NotFound />} />
 
               <Route path='*' element={<Navigate replace to='/404' />} />
@@ -164,5 +166,3 @@ function App() {
 }
 
 export default App;
-
-
