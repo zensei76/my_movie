@@ -154,7 +154,7 @@ function EditMovieForm({ movie }) {
 // function EditMovieForm({movie}) {
 //   const [name, setName] = useState(movie.name);
 //   const [poster, setPoster] = useState(movie.poster);
-//   const [ratings, setRatings] = useState(movie.ratings);
+//   const [rating, setRating] = useState(movie.rating);
 //   const [summary, setSummary] = useState(movie.summary);
 //   const [trailer, setTrailer] = useState(movie.trailer);
 
@@ -164,7 +164,7 @@ function EditMovieForm({ movie }) {
 //     const updatedMovie = {
 //       name: name,
 //       poster: poster,
-//       ratings: ratings,
+//       rating: rating,
 //       summary: summary,
 //       trailer: trailer,
 //     };
@@ -205,13 +205,13 @@ function EditMovieForm({ movie }) {
 //         />
 
 //         <TextField
-//           label='Ratings'
+//           label='Rating'
 //           variant='standard'
 //           placeholder='1 - 10'
 //           onChange={(event) => {
-//             setRatings(event.target.value);
+//             setRating(event.target.value);
 //           }}
-//           value={ratings}
+//           value={rating}
 //         />
 //         <TextField
 //           label='Summary'
