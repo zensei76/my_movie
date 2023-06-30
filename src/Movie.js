@@ -10,7 +10,14 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 // import DeleteIcon from "@mui/icons-material/Delete";
 
-export function Movie({ movie, id, movieList, setMovieList ,deleteButton , editButton}) {
+export function Movie({
+  movie,
+  id,
+  movieList,
+  setMovieList,
+  deleteButton,
+  editButton,
+}) {
   const [show, setShow] = useState(true);
 
   // console.log(movieList, id);
@@ -62,7 +69,7 @@ export function Movie({ movie, id, movieList, setMovieList ,deleteButton , editB
         {/* Conditional Rendering  */}
         {show ? <p className='movie-summary'>{movie.summary}</p> : null}
       </CardContent>
-      <CardActions sx={{ justifyContent: 'space-between' }} >
+      <CardActions sx={{ justifyContent: "space-between" }}>
         <Counter />
         {/* <DeleteMovie
           movieList={movieList}
@@ -71,15 +78,13 @@ export function Movie({ movie, id, movieList, setMovieList ,deleteButton , editB
           setMovieList={setMovieList}
         /> */}
         <div>
-
-        {editButton}
-        {deleteButton}
+          {editButton}
+          {deleteButton}
         </div>
       </CardActions>
     </Card>
   );
 }
-
 
 //to delete a movie
 // function DeleteMovie({ movieList, setMovieList, id, movie }) {

@@ -20,7 +20,7 @@ export function MovieDetails() {
       .then((data) => data.json())
       .then((mv) => setMovie(mv));
   };
-  useEffect(() => getMovie());
+  useEffect(() => getMovie(),[]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const styles = {
     color: movie.rating > 8 ? "green" : "red",
