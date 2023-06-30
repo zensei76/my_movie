@@ -3,15 +3,13 @@ import { Movie } from "./Movie";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
-import EditIcon from '@mui/icons-material/Edit';
-import { EditMovie } from "./EditMovie";
-
+import EditIcon from "@mui/icons-material/Edit";
 
 export function MovieList() {
   const url = "https://64970eb083d4c69925a361bf.mockapi.io/movies";
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [movieList, setMovieList] = useState([]);
-  
+
   const getMovies = () => {
     fetch(url, {
       method: "GET",
@@ -22,12 +20,11 @@ export function MovieList() {
   useEffect(() => getMovies(), []);
 
   const deleteMovie = (id) => {
-
     //Delete ---> Refresh data
-  
+
     fetch(`https://64970eb083d4c69925a361bf.mockapi.io/movies/${id}`, {
       method: "DELETE",
-    }).then(()=> getMovies());
+    }).then(() => getMovies());
   };
 
   return (
@@ -46,14 +43,11 @@ export function MovieList() {
                 <DeleteIcon />
               </IconButton>
             }
-
-            editButton = {
-               <IconButton onClick={()=> navigate(`/movie/edit/${mv.id}`)}>
-                  <EditIcon />
-               </IconButton>
+            editButton={
+              <IconButton onClick={() => navigate(`/movie/edit/${mv.id}`)}>
+                <EditIcon />
+              </IconButton>
             }
-
-
           />
         ))}
         {/* { console.log(setMovieList)} */}
@@ -61,6 +55,3 @@ export function MovieList() {
     </div>
   );
 }
-
-
-

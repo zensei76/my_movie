@@ -1,10 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import Button from '@mui/material/Button';
-import { useState } from 'react';
-import { useEffect } from 'react';
-
+import Button from "@mui/material/Button";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export function MovieDetails() {
   const { id } = useParams();
@@ -21,7 +20,7 @@ export function MovieDetails() {
       .then((data) => data.json())
       .then((mv) => setMovie(mv));
   };
-  useEffect(() => getMovie(), []);
+  useEffect(() => getMovie());
 
   const styles = {
     color: movie.rating > 8 ? "green" : "red",
@@ -49,11 +48,14 @@ export function MovieDetails() {
         <p className='movie-summary'>{movie.summary}</p>
       </div>
 
-
-      <Button startIcon ={ <KeyboardReturnIcon />} variant="outlined"className='back-button' onClick={() => navigate(-1)}>
+      <Button
+        startIcon={<KeyboardReturnIcon />}
+        variant='outlined'
+        className='back-button'
+        onClick={() => navigate(-1)}
+      >
         Back
       </Button>
-
     </div>
   );
 }
