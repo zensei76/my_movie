@@ -80,7 +80,7 @@ function EditMovieForm({ movie }) {
           value={values.name}
           onChange={handleChange}
           onBlur={handleBlur}
-          // error
+          error ={touched.name  && errors.name ? errors.name : null}
           helperText={touched.name ? errors.name : null}
         />
 
@@ -91,7 +91,7 @@ function EditMovieForm({ movie }) {
           value={values.poster}
           onChange={handleChange}
           onBlur={handleBlur}
-          // error
+          error ={touched.poster && errors.poster ? errors.poster : null}
           helperText={touched.poster ? errors.poster : null}
         />
 
@@ -102,7 +102,7 @@ function EditMovieForm({ movie }) {
           value={values.rating}
           onChange={handleChange}
           onBlur={handleBlur}
-          // error
+          error ={touched.rating && errors.rating? errors.rating : null}
           helperText={touched.rating ? errors.rating : null}
         />
         <TextField
@@ -112,6 +112,7 @@ function EditMovieForm({ movie }) {
           value={values.summary}
           onChange={handleChange}
           onBlur={handleBlur}
+          error={touched.summary && errors.summary ? errors.summary : null}
           helperText={touched.summary ? errors.summary : null}
         />
         <TextField
@@ -121,6 +122,7 @@ function EditMovieForm({ movie }) {
           value={values.trailer}
           onChange={handleChange}
           onBlur={handleBlur}
+          error = {touched.trailer && errors.trailer ? errors.trailer : null}
           helperText={touched.trailer ? errors.trailer : null}
         />
         {/* <h1>{errors}</h1> */}
